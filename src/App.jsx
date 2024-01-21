@@ -1,4 +1,6 @@
 import "./App.css";
+//ต้อง import Proptypes เพื่อ define prop types for Button component
+import PropTypes from 'prop-types';
 
 function Header() {
   return (
@@ -51,7 +53,7 @@ function MainContent() {
           to collaborate with you to tackle your most complex challenges and
           drive your success.
         </p>
-        <Button />
+        <Button buttonText="Learn More" buttonStyle="learn-button" />
       </div>
     </main>
   );
@@ -70,7 +72,7 @@ function ProductSection() {
             />
             <h3>Premium Bluetooth Headphones</h3>
             <p className="product-price">2,400 Baht</p>
-            <Button />
+            <Button buttonText="Add to Cart" buttonStyle="add-to-cart-button" />
           </div>
           <div className="product-card">
             <img
@@ -79,7 +81,7 @@ function ProductSection() {
             />
             <h3>Classic Leather Watch</h3>
             <p className="product-price">4,000 Baht</p>
-            <Button />
+            <Button buttonText="Add to Cart" buttonStyle="add-to-cart-button" />
           </div>
           <div className="product-card">
             <img
@@ -88,7 +90,7 @@ function ProductSection() {
             />
             <h3>Organic Green Tea</h3>
             <p className="product-price">79.99 Baht</p>
-            <Button />
+            <Button buttonText="Add to Cart" buttonStyle="add-to-cart-button-secondary" />
           </div>
         </div>
       </div>
@@ -104,9 +106,30 @@ function Footer() {
   );
 }
 
-function Button() {
-  return <button className="add-to-cart-button">Add to Cart</button>;
+function Button(props) {
+  return (
+    <button className={props.buttonStyle}>{props.buttonText}</button>
+  );
 }
+
+
+/*
+The error message you're seeing is from ESLint, and 
+it's indicating that you should define prop types for 
+your Button component. 
+Prop types are a way to validate the props that 
+are being passed to a React component, 
+ensuring that the correct props are provided and 
+that they have the expected types.
+To fix this issue, you can use the PropTypes library 
+to define prop types for your Button component. 
+Here's how you can modify your Button component 
+to include prop types
+*/
+Button.propTypes = {
+  buttonText: PropTypes.string.isRequired,
+  buttonStyle: PropTypes.string.isRequired,
+};
 
 function App() {
   return (
